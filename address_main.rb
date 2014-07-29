@@ -1,6 +1,6 @@
 require './lib/address_book'
 require './lib/phone'
-
+require './lib/email'
 def main_menu
   system 'clear'
   loop do
@@ -35,10 +35,13 @@ def add_contact
   email = gets.chomp
   puts "address"
   address = gets.chomp
+  new_email = Email.new(name)
   new_phone = Phone.new(name)
+  new_email.add(email)
+  new_email.save
   new_phone.add(number)
   new_phone.save
-  new_contact = Contact.new(name, new_phone, email, address)
+  new_contact = Contact.new(name, new_phone, new_email, address)
   new_contact.save
 end
 
@@ -58,18 +61,21 @@ def list_info(first_name)
     if person.name == first_name
       puts person.name
       puts person.number.number
-      puts person.email
+      puts person.email.email
       puts person.address
     end
   end
 
   puts "W) Would you like to add a phone number?"
+  puts "E) Extend email list?"
   answer = gets.chomp.upcase
 
   if answer == "W"
     add_number(first_name)
+  elsif answer == "E"
+    add_email(first_name)
   else
-    exit
+    main_menu
   end
 
 end
@@ -83,6 +89,22 @@ def add_number(first_name)
     if phone.name == first_name
       phone.add(new_number)
       puts phone.number
+    else
+      "Please enter a valid name"
+    end
+  end
+
+end
+
+def add_email(first_name)
+
+  puts "enter additional email"
+  new_email = gets.chomp
+
+  Email.all.each do |email|
+    if email.name == first_name
+      email.add(new_email)
+      puts email.email
     else
       "Please enter a valid name"
     end

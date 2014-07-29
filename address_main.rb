@@ -70,12 +70,15 @@ def list_info(first_name)
 
   puts "W) Would you like to add a phone number?"
   puts "E) Extend email list?"
+  puts "S) To edit all of the information"
   answer = gets.chomp.upcase
 
   if answer == "W"
     add_number(first_name)
   elsif answer == "E"
     add_email(first_name)
+  elsif answer == "S"
+    edit(first_name)
   else
     main_menu
   end
@@ -123,5 +126,30 @@ def delete_contact
   end
   puts "Contact Deleted"
 end
+
+def edit(first_name)
+
+  puts "Please enter new number:"
+  new_number = gets.chomp
+  new_number1 = Phone.new(first_name)
+  new_number1.add(new_number)
+
+  puts "Please enter new email"
+  new_email = gets.chomp
+  new_email1 = Email.new(first_name)
+  new_email1.add(new_email)
+
+  puts "Please enter new address"
+  new_address = gets.chomp
+
+  Contact.all.each do |contact|
+    if contact.name == first_name
+      contact.edit_info(new_number1, new_email1, new_address)
+    end
+  end
+
+end
+
+
 
 main_menu

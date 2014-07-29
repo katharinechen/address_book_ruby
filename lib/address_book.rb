@@ -44,4 +44,10 @@ class Contact
     @@list_of_contacts.delete_if { |x| x == name }
   end
 
+  def edit_info(new_number, new_email, new_address)
+    @number = new_number
+    @email = new_email
+    @address = new_address
+  end
+
 end

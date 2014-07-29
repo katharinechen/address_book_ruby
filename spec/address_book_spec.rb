@@ -42,6 +42,16 @@ describe :Contact do
       expect(Contact.all).to eq([])
     end
   end
+
+  describe '.edit_info' do
+    it "allows for editing" do
+      new_contact = Contact.new("Michael", 1231231234, "michael@epicodus.com", "123 Lowell Lane")
+      new_contact.save
+      new_contact.edit_info(2222222222, "michael2@gmail.com", "Reed College")
+      expect(new_contact.number).to eq(2222222222)
+    end
+  end
+
 end
 
 describe :Phone do

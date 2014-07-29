@@ -1,12 +1,14 @@
+#require 'phone'
+
 class Contact
 
   @@list_of_contacts = []
 
   def initialize (name,number,email,address)
     @name = name
-    @number = [number]
-    @email = [email]
-    @address = [address]
+    @number = number
+    @email = email
+    @address = address
   end
 
   def name

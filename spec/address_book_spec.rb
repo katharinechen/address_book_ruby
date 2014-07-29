@@ -33,6 +33,15 @@ describe :Contact do
       expect(Contact.clear).to eq ([])
     end
   end
+
+  describe '.remove' do
+    it "delete seletected contact" do
+      new_contact = Contact.new("Michael", 1231231234, "michael@epicodus.com", "123 Lowell Lane")
+      new_contact.save
+      Contact.remove(new_contact)
+      expect(Contact.all).to eq([])
+    end
+  end
 end
 
 describe :Phone do

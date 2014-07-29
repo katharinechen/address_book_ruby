@@ -1,6 +1,8 @@
 require './lib/address_book'
 require './lib/phone'
 require './lib/email'
+#require 'pry'
+
 def main_menu
   system 'clear'
   loop do
@@ -8,6 +10,7 @@ def main_menu
     puts "What would you like to do?\n"
     puts "A) Add a contact?"
     puts "L) List contacts?"
+    puts "D) Delete contact"
     puts "E) Exit?\n"
     answer = gets.chomp.upcase
 
@@ -17,16 +20,15 @@ def main_menu
       exit
     elsif answer == "L"
       list_contacts
+    elsif answer == "D"
+      delete_contact
     else
       puts "try again"
     end
-
   end
-
-  end
+end
 
 def add_contact
-
   puts "name"
   name = gets.chomp
   puts "number"
@@ -109,6 +111,17 @@ def add_email(first_name)
       "Please enter a valid name"
     end
   end
-
 end
+
+def delete_contact
+  puts "Enter name of contact to delete"
+  deleted = gets.chomp
+  Contact.all.each do |contact|
+    if contact.name == deleted
+      Contact.remove(contact)
+    end
+  end
+  puts "Contact Deleted"
+end
+
 main_menu

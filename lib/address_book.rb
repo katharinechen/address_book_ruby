@@ -9,6 +9,7 @@ class Contact
     @number = number
     @email = email
     @address = address
+
   end
 
   def name
@@ -37,6 +38,10 @@ class Contact
 
   def self.clear
     @@list_of_contacts = []
+  end
+
+  def self.remove(name)
+    @@list_of_contacts.delete_if { |x| x == name }
   end
 
 end

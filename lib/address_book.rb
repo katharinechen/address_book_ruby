@@ -1,5 +1,3 @@
-#require 'phone'
-
 class Contact
 
   @@list_of_contacts = []

@@ -1,5 +1,3 @@
-#require 'address_book'
-
 class Email
 
   @@list_of_emails = []

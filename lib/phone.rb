@@ -1,5 +1,3 @@
-#require 'address_book'
-
 class Phone
 
   @@list_of_phones = []
